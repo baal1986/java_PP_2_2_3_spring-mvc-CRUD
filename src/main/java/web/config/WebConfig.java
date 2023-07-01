@@ -19,6 +19,8 @@ import org.thymeleaf.spring5.templateresolver.SpringResourceTemplateResolver;
 import org.thymeleaf.spring5.view.ThymeleafViewResolver;
 import web.model.User;
 
+import javax.persistence.EntityManager;
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Objects;
 import java.util.Properties;
@@ -64,6 +66,7 @@ public class WebConfig implements WebMvcConfigurer {
 
         return factoryBean;
     }
+
 
     @Bean
     public HibernateTransactionManager getTransactionManager() {
