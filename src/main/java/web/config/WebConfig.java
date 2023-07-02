@@ -42,6 +42,7 @@ public class WebConfig implements WebMvcConfigurer {
         this.env = env;
     }
 
+    /*
     @Bean
     public DataSource getDataSource() {
         DriverManagerDataSource dataSource = new DriverManagerDataSource();
@@ -74,7 +75,7 @@ public class WebConfig implements WebMvcConfigurer {
         transactionManager.setSessionFactory(getSessionFactory().getObject());
         return transactionManager;
     }
-
+*/
 
 
     @Bean
