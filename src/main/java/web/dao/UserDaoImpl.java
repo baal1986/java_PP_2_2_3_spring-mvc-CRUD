@@ -14,33 +14,31 @@ import java.util.List;
 public class UserDaoImpl implements UserDao {
 
     @PersistenceContext
-    private  EntityManager entityManager;
+    private EntityManager entityManager;
 
 
     @Override
-    public List<User> getUsers() {
+    public List<User> allFilms() {
         return null;
     }
 
     @Override
-    public void save(User user) {
+    public void add(User user) {
 
     }
 
     @Override
-    public User showUser(int id) {
+    public void delete(User user) {
+
+    }
+
+    @Override
+    public void edit(User user) {
+
+    }
+
+    @Override
+    public User getById(Long id) {
         return null;
     }
-
-    @Override
-    public void editUser(User user) {
-
-    }
-
-    @Override
-    public void deleteUser(int id) {
-
-    }
-
-
 }

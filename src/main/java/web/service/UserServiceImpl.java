@@ -18,29 +18,27 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> getUsers() {
-        return null;
+    public List<User> allFilms() {
+        return userDao.allFilms();
     }
 
     @Override
-    public void save(User user) {
-
+    public void add(User user) {
+        userDao.add(user);
     }
 
     @Override
-    public User showUser(int id) {
-        return null;
+    public void delete(User user) {
+        userDao.delete(user);
     }
 
     @Override
-    public void editUser(User user) {
-
+    public void edit(User user) {
+        userDao.edit(user);
     }
 
     @Override
-    public void deleteUser(int id) {
-
+    public User getById(Long id) {
+        return userDao.getById(id);
     }
-
-
 }
