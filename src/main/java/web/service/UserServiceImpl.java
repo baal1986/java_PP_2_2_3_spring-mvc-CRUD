@@ -3,6 +3,7 @@ package web.service;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.dao.UserDao;
+import web.dao.UserDaoImpl;
 import web.model.User;
 
 import java.util.List;
@@ -11,12 +12,10 @@ import java.util.List;
 public class UserServiceImpl implements UserService {
     private final UserDao userDao;
 
-    //TODO сделать через конструктор
     @Autowired
     public UserServiceImpl(UserDao userDao) {
         this.userDao = userDao;
     }
-
 
     @Override
     public List<User> getUsers() {

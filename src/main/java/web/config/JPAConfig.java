@@ -10,6 +10,7 @@ import org.springframework.core.env.Environment;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
 import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
@@ -53,8 +54,12 @@ public class JPAConfig {
         LocalContainerEntityManagerFactoryBean entityManager = new LocalContainerEntityManagerFactoryBean();
         entityManager.setDataSource(getDataSource());
         entityManager.setPersistenceProviderClass(HibernatePersistenceProvider.class);
-        entityManager.setPackagesToScan(environment.getRequiredProperty("db.entity.package"));
-        entityManager.setJpaVendorAdapter(new HibernateJpaVendorAdapter());
+        entityManager.setPackagesToScan("web/model");
+
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        vendorAdapter.setGenerateDdl(true);
+        entityManager.setJpaVendorAdapter(vendorAdapter);
+
         entityManager.setJpaProperties(getHibernateProperties());
         return entityManager;
     }

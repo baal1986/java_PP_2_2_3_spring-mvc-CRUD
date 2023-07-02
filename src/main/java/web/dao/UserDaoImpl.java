@@ -1,23 +1,21 @@
 package web.dao;
 
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import web.model.User;
 
-import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceUnit;
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
+
 import java.util.List;
 
 @Repository
 public class UserDaoImpl implements UserDao {
 
-    //TODO сделать через конструктор?
-    private EntityManagerFactory entityManagerFactory;
+    @PersistenceContext
+    private  EntityManager entityManager;
 
-    @PersistenceUnit
-    public void setEntityManagerFactory(EntityManagerFactory entityManagerFactory) {
-        this.entityManagerFactory = entityManagerFactory;
-    }
 
     @Override
     public List<User> getUsers() {

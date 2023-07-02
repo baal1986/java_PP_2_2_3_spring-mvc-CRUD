@@ -6,6 +6,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import web.service.UserService;
+import web.service.UserServiceImpl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -28,11 +29,13 @@ public class UserController {
         model.addAttribute("messages", messages);
         return "index";
     }
+
     @GetMapping(value = "/users")
     public String printUsers(@RequestParam("count") int count, ModelMap model) {
         //model.addAttribute("cars", userService.getCar(count));
         return "cars";
     }
+
     @GetMapping(value = "/user")
     public String printUser(ModelMap model) {
         //model.addAttribute("cars", userService.getCar(count));
