@@ -7,28 +7,31 @@ import javax.persistence.*;
 
 @Entity
 @Component
-@Table
+@Table(name = "users")
 public class User {
+
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column
-    private String name;
+    @Column(name = "first_name")
+    private String firstName;
 
-    @Column
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column
-    private Byte age;
+    @Column(name = "email")
+    private String email;
+
 
     public User() {
-
     }
 
-    public User(String name, String lastName, Byte age) {
-        this.name = name;
+
+    public User(String firstName, String lastName, String email) {
+        this.firstName = firstName;
         this.lastName = lastName;
-        this.age = age;
+        this.email = email;
     }
 
     public Long getId() {
@@ -39,22 +42,12 @@ public class User {
         this.id = id;
     }
 
-    public String getName() {
-        return name;
+    public String getFirstName() {
+        return firstName;
     }
 
-    @Override
-    public String toString() {
-        return "User{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", age=" + age +
-                '}';
-    }
-
-    public void setName(String name) {
-        this.name = name;
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
     }
 
     public String getLastName() {
@@ -65,11 +58,23 @@ public class User {
         this.lastName = lastName;
     }
 
-    public Byte getAge() {
-        return age;
+    public String getEmail() {
+        return email;
     }
 
-    public void setAge(Byte age) {
-        this.age = age;
+    public void setEmail(String email) {
+        this.email = email;
     }
+
+    @Override
+    public String toString() {
+        return "User {\n" +
+                "\tid = " + id + '\n' +
+                "\tfirstName = " + firstName + '\n' +
+                "\tlastName = " + lastName + '\n' +
+                "\temail = " + email + '\n' +
+                '}' + "\n";
+    }
+
 }
+

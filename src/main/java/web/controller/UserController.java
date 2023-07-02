@@ -28,8 +28,13 @@ public class UserController {
         model.addAttribute("messages", messages);
         return "index";
     }
-    @GetMapping(value = "/cars")
-    public String printCars(@RequestParam("count") int count, ModelMap model) {
+    @GetMapping(value = "/users")
+    public String printUsers(@RequestParam("count") int count, ModelMap model) {
+        //model.addAttribute("cars", userService.getCar(count));
+        return "cars";
+    }
+    @GetMapping(value = "/user")
+    public String printUser(ModelMap model) {
         //model.addAttribute("cars", userService.getCar(count));
         return "cars";
     }
