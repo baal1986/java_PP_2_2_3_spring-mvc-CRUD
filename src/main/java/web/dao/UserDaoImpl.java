@@ -6,7 +6,9 @@ import web.model.User;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
+import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Consumer;
 
 @Repository
 public class UserDaoImpl implements UserDao {
@@ -16,8 +18,8 @@ public class UserDaoImpl implements UserDao {
 
 
     @Override
-    public List<User> allFilms() {
-        return null;
+    public List<User> allUsers() {
+        return entityManager.createQuery("From User", User.class).getResultList();
     }
 
     @Override

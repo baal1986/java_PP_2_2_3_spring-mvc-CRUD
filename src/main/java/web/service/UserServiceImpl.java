@@ -19,8 +19,9 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public List<User> allFilms() {
-        return userDao.allFilms();
+    @Transactional(readOnly = true)
+    public List<User> allUsers() {
+        return userDao.allUsers();
     }
 
     @Override
@@ -30,16 +31,19 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void delete(User user) {
         userDao.delete(user);
     }
 
     @Override
+    @Transactional
     public void edit(User user) {
         userDao.edit(user);
     }
 
     @Override
+    @Transactional(readOnly = true)
     public User getById(Long id) {
         return userDao.getById(id);
     }

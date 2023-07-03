@@ -5,7 +5,7 @@ import web.model.User;
 import java.util.List;
 
 public interface UserService {
-    List<User> allFilms();
+    List<User> allUsers();
 
     void add(User user);
 

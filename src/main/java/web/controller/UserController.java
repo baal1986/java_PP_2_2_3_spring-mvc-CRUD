@@ -3,8 +3,8 @@ package web.controller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 import web.model.User;
 import web.service.UserService;
 import web.service.UserServiceImpl;
@@ -21,26 +21,38 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
+        userService.add(new User("Ivan","Ivanov","ivanov@gmail.com"));
+        userService.add(new User("Petr","Petrov","petrov@gmail.com"));
+        userService.add(new User("Sidor","Sidorov","sidorov@gmail.com"));
     }
 
     @GetMapping(value = "/")
-    public String printWelcome(ModelMap model) {
+    public String printAllUsers(ModelMap model) {
         List<String> messages = new ArrayList<>();
-        messages.add("Hello!");
-
-        model.addAttribute("messages", messages);
+        model.addAttribute("users", userService.allUsers());
         return "index";
     }
-
-    @GetMapping(value = "/users")
-    public String printUsers(@RequestParam("count") int count, ModelMap model) {
-        //model.addAttribute("cars", userService.getCar(count));
-        return "cars";
+    @GetMapping(value = "/add")
+    public String addUser(ModelMap model) {
+        model.addAttribute("user", new User());
+        return "add";
     }
 
-    @GetMapping(value = "/user")
-    public String printUser(ModelMap model) {
-        //model.addAttribute("cars", userService.getCar(count));
-        return "cars";
+    @PostMapping (value = "saveAdd")
+    public String saveAdd(@ModelAttribute("user") User user){
+        userService.add(user);
+        return "redirect:/";
     }
+
+
+    @GetMapping(value = "/edit/{id}")
+    public ModelAndView editUser(@PathVariable("id") Long id) {
+        User user = userService.getById(id);
+        ModelAndView modelAndView = new ModelAndView();
+        modelAndView.setViewName("editPage");
+        modelAndView.addObject("user", user);
+        return modelAndView;
+    }
+
+
 }
