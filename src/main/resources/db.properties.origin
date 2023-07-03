@@ -3,7 +3,6 @@ db.driver=
 db.url=
 db.username=
 db.password=
-db.entity.package=
 
 # Hibernate properties
 hibernate.show_sql=

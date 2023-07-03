@@ -1,7 +1,5 @@
 package web.dao;
 
-
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import web.model.User;
 
@@ -24,7 +22,7 @@ public class UserDaoImpl implements UserDao {
 
     @Override
     public void add(User user) {
-
+        entityManager.persist(user);
     }
 
     @Override
