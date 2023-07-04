@@ -20,9 +20,6 @@ public class UserController {
     @Autowired
     public UserController(UserService userService) {
         this.userService = userService;
-        userService.add(new User("Ivan", "Ivanov", "ivanov@gmail.com"));
-        userService.add(new User("Petr", "Petrov", "petrov@gmail.com"));
-        userService.add(new User("Sidor", "Sidorov", "sidorov@gmail.com"));
     }
 
     @GetMapping(value = "/")
