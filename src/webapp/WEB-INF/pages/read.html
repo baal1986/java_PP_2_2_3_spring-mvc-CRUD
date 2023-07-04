@@ -1,6 +1,5 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
     <title>List Users</title>
@@ -23,17 +22,21 @@
                 <td th:text="${user.getLastName()}">LastName</td>
                 <td th:text="${user.getEmail()}">Email</td>
                 <td>
-                    <a th:href="@{'/edit/' + ${user.getId()}}">edit</a>
-                    /
-                    <a th:href="@{'/delete/' + ${user.getId()}}">delete</a>
+                    <form th:method="GET" th:action="@{/users/edit/{id}(id=${user.getId()})}">
+                        <input type="submit" value="Edit">
+                    </form>
+                    <form th:method="DELETE" th:action="@{/users/delete/{id}(id=${user.getId()})}">
+                        <input type="submit" value="Delete">
+                    </form>
                 </td>
             </tr>
         </th:block>
     </table>
-
     <br>
-    <input type="button" value="Add new User" onclick="window.location.href='add'">
-
+    <form th:method="GET" th:action="@{/users/new}">
+        <input type="submit" value="Add new User">
+    </form>
+    <br>
 </div>
 </body>
 </html>

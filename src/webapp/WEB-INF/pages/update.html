@@ -1,23 +1,26 @@
 <!DOCTYPE html>
-<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" xmlns:form="http://www.w3.org/1999/html">
-<html lang="en">
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Add new User</title>
+    <title>Edit User</title>
 </head>
 <body>
 <div>
     <table border="1">
-        <h2>Add new User</h2>
+        <h2>Edit User</h2>
         <tr>
-            <form th:action="@{/saveAdd}" th:object="${user}" th:method="POST">
+            <form th:action="@{/users/saveEdit/{id}(id=${user.getId()})}" th:object="${user}" th:method="PATCH">
                 <th>FirstName <input type="text" th:field="*{firstName}" id="firstName"></th>
                 <th>LastName <input type="text" th:field="*{lastName}" id="lastName"></th>
                 <th>Email <input type="text" th:field="*{email}" id="email"></th>
-                <th><input type="submit" value="Add"/></th>
+                <th><input type="submit" value="Save"/></th>
             </form>
         </tr>
     </table>
+    <br>
+    <form th:method="GET" th:action="@{/users/}">
+        <input type="submit" value="<=Back">
+    </form>
 </div>
 </body>
 </html>
