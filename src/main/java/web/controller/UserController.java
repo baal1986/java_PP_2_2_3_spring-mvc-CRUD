@@ -9,8 +9,6 @@ import web.model.User;
 import web.service.UserService;
 
 
-
-
 @Controller
 @RequestMapping("/users")
 public class UserController {

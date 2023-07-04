@@ -1,9 +1,11 @@
 package web.config;
 
 
+import org.springframework.web.filter.CharacterEncodingFilter;
 import org.springframework.web.filter.HiddenHttpMethodFilter;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
+import javax.servlet.Filter;
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 
@@ -37,13 +39,22 @@ public class AppInit extends AbstractAnnotationConfigDispatcherServletInitialize
     @Override
     public void onStartup(ServletContext aServletContext) throws ServletException {
         super.onStartup(aServletContext);
+        registerCharacterEncodingFilter(aServletContext);
         registerHiddenFieldFilter(aServletContext);
+
     }
 
     private void registerHiddenFieldFilter(ServletContext aContext) {
         aContext.addFilter("hiddenHttpMethodFilter",
-                new HiddenHttpMethodFilter())
+                        new HiddenHttpMethodFilter())
                 .addMappingForUrlPatterns(null, true, "/*");
+    }
+
+    private void registerCharacterEncodingFilter(ServletContext aContext) {
+        CharacterEncodingFilter cef = new CharacterEncodingFilter();
+        cef.setForceEncoding(true);
+        cef.setEncoding("UTF-8");
+        aContext.addFilter("characterEncodingFilter", cef).addMappingForUrlPatterns(null, true, "/*");
     }
 
 }
