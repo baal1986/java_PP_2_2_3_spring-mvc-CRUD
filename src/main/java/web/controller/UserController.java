@@ -5,12 +5,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 import web.model.User;
 import web.service.UserService;
 
-import java.util.ArrayList;
-import java.util.List;
+
 
 
 @Controller
@@ -29,7 +27,6 @@ public class UserController {
 
     @GetMapping(value = "/")
     public String printAllUsers(ModelMap model) {
-        List<String> messages = new ArrayList<>();
         model.addAttribute("users", userService.allUsers());
         return "read";
     }
@@ -53,14 +50,13 @@ public class UserController {
     }
 
     @PatchMapping("/saveEdit/{id}")
-    public String saveEditUser(@ModelAttribute("user") User user,
-                               @PathVariable("id") Long id) {
+    public String saveEditUser(@ModelAttribute("user") User user) {
         userService.edit(user);
         return "redirect:/users/";
     }
 
     @DeleteMapping("/delete/{id}")
-    public String deleteUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
+    public String deleteUser(@ModelAttribute("user") User user) {
         userService.delete(user);
         return "redirect:/users/";
     }

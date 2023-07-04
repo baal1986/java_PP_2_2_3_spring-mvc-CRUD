@@ -5,11 +5,8 @@ import web.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Optional;
-import java.util.function.Consumer;
+
 
 @Repository
 public class UserDaoImpl implements UserDao {
